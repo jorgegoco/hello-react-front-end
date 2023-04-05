@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Greetings from './components/Greetings';
+import { getGreeting } from './redux/greeting/greetingSlice';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  dispatch(getGreeting());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Greetings />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
